@@ -3,183 +3,127 @@ body {
 	background-color: white;
 }
 
-a:hover {
 
-    cursor: pointer;
+h1
+{
+	text-align: center;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #333;
+	padding-bottom: 10px;
+}
+h1:after
+{
+	content: '';
+	background: #333;
+	display:block;
+	height: 3px;
+	width: 150px;
+	margin: 10px auto;
 }
 
-html {
+.profile 
+{
+	margin-top:25px;
 
-	scroll-behavior: smooth;
+}
+.profile .img.box
+{
+	opacity: 0;
+	display: inline-block;
+	position: relative;
+
 }
 
-.icon {
-	
-	width: 25rem;
-	margin-top: 1.0rem;
-	margin-bottom: 2rem;
+.profile h2
+{
+	font-size:22px;
+	font-weight: bold;
+	margin-top: 15px;
+}
+.profile h3 
+{
+	font-size:22px;
+	font-weight: bold;
+	margin-top: 15px;
 }
 
-.heading {
+.img-box:after
+{
+	content:'';
+	opacity: 0;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
 
-	font-size: 2.5rem;
-	font-family: 'Anaheim', sans-serif;
-
-	color : #263854;
 }
 
-.heading2 {
-
-	font-size: 1.5rem;
-	font-family: 'Abel', sans-serif;
-
-	margin-top: 1.4rem;
-
-	color: #263854;
-
-	margin-bottom: 2rem;
+.img-box ul
+{
+	margin: 0;
+	padding: 20px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	display: block;
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 0;
 }
 
-.getStarted {
-
-	padding-top: 0.6rem;
-	padding-bottom: 0.6rem;
-	padding-left: 1.2rem;
-	padding-right: 1.2rem;
-
-	margin-top: 2rem;
-
-	width: 18rem;
-
-	border-radius: 1.5rem;
-	border-width: 0.2rem;
-
-	border : none;
-
-	background: #3B4A66;
-	color : white;
-
-	font-family: 'Anaheim', sans-serif;
-	font-size: 1.3rem;
+.img-box ul li
+{
+	display: inside-block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	margin: 3px;
+	padding: 7px;
 }
 
-button:hover {
-
-	cursor: pointer;
+.img-box a
+{
+	color: none;
+}
+.img-box:hover:after
+{
+	opacity:1;
 }
 
-button:focus {
-
-	outline: 0 !important;
+.img-box:hover ul
+{
+	opacity: 1;
 }
 
-.explain {
-
-	margin-top: 6rem;
-	background-color: #313642;
+.img-box:hover li
+{
+	color: red;
+	border: 1px solid red;
 }
 
-.userForm {
-
-	margin-top: -0.5rem;
+.img-box:after, .img-box ul, .img-box ul li
+{
+	transition: all 0.5s ease-in-out 0s;
 }
 
-.heading3 {
 
-	font-size: 1.8rem;
-	font-family: 'Abel', sans-serif;
 
-	color : #373b42;
-}
 
-.textPara {
 
-	font-size: 1.20rem;
-	font-family: 'Abel', sans-serif;
 
-	color: white;
-}
 
-.loader {
 
-	width: 15rem;
-	display: none;
-}
 
-.message {
 
-	margin-left: 0.5%;
-	font-size: 1.1rem;
-	font-family: 'Abel', sans-serif;
 
-	width : 85%;
-}
 
-.eachContract {
 
-	width: 90%;
-	margin-top: 2%;
-	margin-left: 4%;
-}
 
-.jumboHead {
 
-	font-size: 1.5rem;
-	font-family: 'Abel', sans-serif;
 
-	color : #263854;
-}
 
-.jumboText {
 
-	font-size: 1.1rem;
-	font-family: 'Abel', sans-serif;
-
-	color : #263854;
-
-	margin-top: 1rem;
-
-	word-wrap: break-word !important;
-}
-
-.getStarted2 {
-
-	padding-top: 0.6rem;
-	padding-bottom: 0.6rem;
-	padding-left: 1.2rem;
-	padding-right: 1.2rem;
-
-	margin-top: 2rem;
-	margin-bottom: 0.5rem;
-
-	width: 12rem;
-
-	border-radius: 1.5rem;
-	border-width: 0.2rem;
-
-	border : none;
-
-	background: #624664;
-	color : white;
-
-	font-family: 'Anaheim', sans-serif;
-	font-size: 1.3rem;
-}
-
-@media only screen  and (min-width : 1024px) {
-
-.geoLoc {
-
-	width: 60rem !important;
-	height: 30rem !important;
-}
-}
-
-@media only screen and (min-device-width : 300px) and (max-device-width : 940px) and (orientation : landscape) {
-
-.geoLoc {
-
-	width: 40rem !important;
-	height: 30rem !important;
-}
-}

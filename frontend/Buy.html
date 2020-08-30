@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="css/buyrent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=" crossorigin="anonymous" />
+    
+	<link rel="stylesheet" type="text/css" href="css/buyrent.css">
 
     <link href="https://fonts.googleapis.com/css?family=Anaheim|Abel" rel="stylesheet">
 
@@ -16,6 +16,25 @@
     <title>Buy</title>
 
 </head>
+<body class="white">
+<div class="container" style="text-align: center">
+	<head>
+	<title>Buy Market</title>
+	<style>
+		a {
+			text-decoration: none;
+			
+		}
+		
+		h4 {
+			text-align: center;
+			text-decoration: underline;
+			text-shadow: 1px 0px 10px gray;
+		}
+		
+	</style>
+</head>
+</body>
 
 
 <body>
@@ -32,40 +51,74 @@
   
 <body>
 
-  <div class="container-fluid .explain">
-	<div style="margin-left: 1rem; margin-right: 1rem;">
+	<fieldset>
+		<legend align="center"> PROPERTY </legend>
 		
     <div id="dapp-tokens" class="row">
       <div class="card">
         <div class="card-image">
           <img id="dapp-image" src="">
-          <span id="dapp-name" class="card-title">Landmark Name</span>
+          
         </div>
-        <div class="card-action">
-          <a id="dapp-bid" href="#">Bid</a>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="col s12 m6 dapp-admin">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"><input id="dapp-register-name" placeholder="Landmark name..." /></span>
-          <p>Image: <input id="dapp-copyright-image" type="file" /></p>
-
-          <p><input id="dapp-pinata-api-key" placeholder="Pinata API Key"/></p>
-          <p><input id="dapp-pinata-secret-api-key" placeholder="Pinata Secret API Key" type="password" /></p>
-          <p>Note: Pinata requests are done locally via your browser. Your keys are not shared with any party except Pinata.</p>
-          <br/>
-        </div>
-        <div class="card-action">
-          <a id="dapp-register" href="#" onclick="dApp.registerLand()">Register Land</a>
+        <div class="card-action" align="center">
+			<div class="w3-container w3-grey" style="white">
+				<a id="dapp-bid" href="#">Bid</a>
+			</div>
         </div>
       </div>
     </div>
+	</fieldset>
+	<br/>
+		<fieldset>
+		<legend align="center"> PROPERTY - LIST ON IPFS </legend>
+	
 
-  </div>
+		<div class="col s12 m6 dapp-admin">
+			<div class="card white">
+				<div class="card-content black-text">
+					<span class="card-title">
+			
+					<input id="dapp-register-name" placeholder="Landmark Name..." /><br>
+					
+					<input id="dapp-register-minBid" placeholder="Minimum Bid..." /><br>
+					</span>
+					<!-- THIS PART ADD CATEGORY FOR PATENTS -->
+					<input id="dapp-register-category" input list="plists" name="plists" placeholder="Category">
+					<datalist id="plists">
+					<option value="Property1">
+					<option value="Property2">
+					<option value="Property3">
+					<option value="Property4">
+					<option value="Property5">
+					<option value="Property6">
+					<option value="Property7">
+					<option value="Property8">
+					<option value="Property9">
+					<option value="Property10">
+					<option value="Property11">
+					</datalist>
+					
+				<!-- *END* THIS PART ADD CATEGORY FOR PATENTS -->	
+				
+					<p>Image: <input id="dapp-copyright-image" type="file" /></p>
+					<br>
+					<!-- <p><input id="dapp-register-category" placeholder="Property Category"/></p> -->
+					<p><input id="dapp-pinata-api-key" placeholder="Pinata API Key"/></p>
+					<p><input id="dapp-pinata-secret-api-key" placeholder="Pinata Secret API Key" type="password" /></p>
+					<p>Note: Pinata requests are done locally via your browser. Your keys are not shared with any party except Pinata.</p>
+					<br/>
+					</div>
+					
+					<div class="card-action" align="center">
+						<div class="w3-container w3-grey">
+						<a id="dapp-register" href="#" onclick="dApp.registerLand()">Register Property</a>
+						</div>
+					</div>
+					
+			</div>
+		</div>
+		</fieldset>
+  
 
   <!-- JQuery 3.4.1 slim minified -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
@@ -75,6 +128,6 @@
   <script src="https://cdn.jsdelivr.net/npm/web3@1.2.5-rc.0/dist/web3.min.js" integrity="sha256-ZjUHyLZZWkQPbWfRjTSmGtfcTSOermVT6f/CvJW2RY4=" crossorigin="anonymous"></script>
   <!-- dApp JavaScript -->
   <script src="dapp.js"></script>
-
+  
 </body>
 </html>

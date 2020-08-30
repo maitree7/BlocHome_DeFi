@@ -1,4 +1,4 @@
-// @TODO: Update this address to match your deployed MartianMarket contract!
+// @TODO: Update this address to match your deployed DealerlessMarket contract!
 const contractAddress = "0x9007d2D64a80E4be895411Adabd75f762778fd24";
 
 const dApp = {
@@ -11,8 +11,33 @@ const dApp = {
     }
     return false;
   },
+  init: async function() {
+    // Initialize web3
+    if (!this.ethEnabled()) {
+      alert("Please install MetaMask to use this dApp!");
+    }
+	if (!this.ethEnabled()) {
+      alert("Please install MetaMask to use this dApp!");
+    }
+
+    this.accounts = await window.web3.eth.getAccounts();
+    this.contractAddress = contractAddress;
+
+    this.marsJson = await (await fetch("./DealerlessMarket.json")).json();
+    this.auctionJson = await (await fetch("./DealerlessAuction.json")).json();
+
+    this.marsContract = new window.web3.eth.Contract(
+      this.marsJson,
+      this.contractAddress,
+      { defaultAccount: this.accounts[0] }
+    );
+    console.log("Contract object", this.marsContract);
+    
+    this.isAdmin = this.accounts[0] == await this.marsContract.methods.owner().call();
+
+  },
   collectVars: async function() {
-    // get land tokens
+    // get property tokens
     this.tokens = [];
     this.totalSupply = await this.marsContract.methods.totalSupply().call();
 
@@ -55,14 +80,18 @@ const dApp = {
     console.log("updating UI");
     // refresh variables
     await this.collectVars();
-
+    const contract_owner = this.accounts[0];
     $("#dapp-tokens").html("");
     this.tokens.forEach((token) => {
       try {
-        let endAuction = `<a id="${token.tokenId}" class="dapp-admin" style="display:none;" href="#" onclick="dApp.endAuction(event)">End Auction</a>`;
-        let bid = `<a id="${token.tokenId}" href="#" onclick="dApp.bid(event);">Bid</a>`;
+        let endAuction = `<a token-id="${token.tokenId}" class="dapp-admin" style="display:none;" href="#" onclick="dApp.endAuction(event)">End Auction</a>`;
+        let bid = `<a token-id="${token.tokenId}" href="#" onclick="dApp.bid(event);">Bid</a>`;
         let owner = `Owner: ${token.owner}`;
-        let withdraw = `<a id="${token.tokenId}" href="#" onclick="dApp.withdraw(event)">Withdraw</a>`
+		console.log(contract_owner)
+        if (token.owner == contract_owner){
+            owner += ` <br/><button class="btn waves-effect waves-light" type="submit" name="rent">Rent<i class="material-icons right">send</i></button>`;
+        }
+        let withdraw = `<a token-id="${token.tokenId}" href="#" onclick="dApp.withdraw(event)">Withdraw</a>`
         let pendingWithdraw = `Balance: ${token.pendingReturn} wei`;
           $("#dapp-tokens").append(
             `<div class="col m6">
@@ -72,7 +101,7 @@ const dApp = {
                   <span id="dapp-name" class="card-title">${token.name}</span>
                 </div>
                 <div class="card-action">
-                  <input type="number" min="${token.highestBid + 1}" name="dapp-wei" value="${token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
+                  <input type="number" min="${token.highestBid == 0? token.minBid : token.highestBid + 1}" name="dapp-wei" value="${token.highestBid == 0? token.minBid : token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
                   ${token.auctionEnded ? owner : bid}
                   ${token.pendingReturn > 0 ? withdraw : ''}
                   ${token.pendingReturn > 0 ? pendingWithdraw : ''}
@@ -90,28 +119,32 @@ const dApp = {
     this.setAdmin();
   },
   bid: async function(event) {
-    const tokenId = $(event.target).attr("id");
-    const ether = $(event.target).prev().val();
+    const tokenId = $(event.target).attr("token-id");
+    const ether = Number($(event.target).prev().val());
     wei = web3.utils.toWei(ether, 'ether');
-    await this.marsContract.methods.bid(tokenId).send({from: this.accounts[0], value: wei}, async () => {
+    await this.marsContract.methods.bid(tokenId).send({from: this.accounts[0], value: wei}).on("receipt", async (receipt) => {
+      M.toast({ html: "Transaction Mined! Refreshing UI..." });
       await this.updateUI();
     });
   },
   endAuction: async function(event) {
-    const tokenId = $(event.target).attr("id");
-    await this.marsContract.methods.endAuction(tokenId).send({from: this.accounts[0]}, async () => {
+    const tokenId = $(event.target).attr("token-id");
+    await this.marsContract.methods.endAuction(tokenId).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
+      M.toast({ html: "Transaction Mined! Refreshing UI..." });
       await this.updateUI();
     });
   },
   withdraw: async function(event) {
-    const tokenId = $(event.target).attr("id");
-    await this.tokens[tokenId].auction.methods.withdraw().send({from: this.accounts[0]}, async () => {
+    const tokenId = $(event.target).attr("token-id") - 1;
+    await this.tokens[tokenId].auction.methods.withdraw().send({from: this.accounts[0]}).on("receipt", async (receipt) => {
+      M.toast({ html: "Transaction Mined! Refreshing UI..." });
       await this.updateUI();
     });
   },
   registerLand: async function() {
     const name = $("#dapp-register-name").val();
     const image = document.querySelector('input[type="file"]');
+    const minBid =  $("#dapp-register-minBid").val()
 
     const pinata_api_key = $("#dapp-pinata-api-key").val();
     const pinata_secret_api_key = $("#dapp-pinata-secret-api-key").val();
@@ -144,7 +177,7 @@ const dApp = {
       M.toast({ html: "Uploading JSON..." });
 
       const reference_json = JSON.stringify({
-        pinataContent: { name, image: image_uri },
+        pinataContent: { name, image: image_uri, minBid},
         pinataOptions: {cidVersion: 1}
       });
 
@@ -165,8 +198,10 @@ const dApp = {
       M.toast({ html: `Success. Reference URI located at ${reference_uri}.` });
       M.toast({ html: "Sending to blockchain..." });
 
-      await this.marsContract.methods.registerLand(reference_uri).send({from: this.accounts[0]}, async () => {
+      await this.marsContract.methods.registerLand(reference_uri).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
+        M.toast({ html: "Transaction Mined! Refreshing UI..." });
         $("#dapp-register-name").val("");
+        $("#dapp-register-minBid").val("");
         $("#dapp-register-image").val("");
         await this.updateUI();
       });
@@ -177,25 +212,7 @@ const dApp = {
   },
   main: async function() {
     // Initialize web3
-    if (!this.ethEnabled()) {
-      alert("Please install MetaMask to use this dApp!");
-    }
-
-    this.accounts = await window.web3.eth.getAccounts();
-    this.contractAddress = contractAddress;
-
-    this.marsJson = await (await fetch("./MartianMarket.json")).json();
-    this.auctionJson = await (await fetch("./MartianAuction.json")).json();
-
-    this.marsContract = new window.web3.eth.Contract(
-      this.marsJson,
-      this.contractAddress,
-      { defaultAccount: this.accounts[0] }
-    );
-    console.log("Contract object", this.marsContract);
-
-    this.isAdmin = this.accounts[0] == await this.marsContract.methods.owner().call();
-
+    await this.init();
     await this.updateUI();
   }
 };
