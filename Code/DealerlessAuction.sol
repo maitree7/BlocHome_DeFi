@@ -1,23 +1,24 @@
 pragma solidity >=0.4.22 <0.6.0;
 
-contract MartianAuction {
-    address payable public beneficiary;
+contract DealerlessAuction {
 
-    // Current state of the auction.
+    address public deployer;
+    
+    //track the beneficiary of the contract
+    address payable public beneficiary;
+    
+    //keep track of the address of the current highest bidder
     address public highestBidder;
     uint public highestBid;
-
-    // Allowed withdrawals of previous bids
-    mapping(address => uint) pendingReturns;
-
-    // Set to true at the end, disallows any change.
-    // By default initialized to `false`.
+    
+    mapping (address => uint) pendingReturns;
+    
     bool public ended;
-
-    // Events that will be emitted on changes.
+    
     event HighestBidIncreased(address bidder, uint amount);
-    event AuctionEnded(address winner, uint amount);
 
+    event AuctionEnded(address winner, uint amount);
+    
     // The following is a so-called natspec comment,
     // recognizable by the three slashes.
     // It will be shown when the user is asked to
@@ -29,6 +30,7 @@ contract MartianAuction {
     constructor(
         address payable _beneficiary
     ) public {
+        deployer = msg.sender; // set as the DealerlessMarket
         beneficiary = _beneficiary;
     }
 
@@ -80,7 +82,7 @@ contract MartianAuction {
     function pendingReturn(address sender) public view returns (uint) {
         return pendingReturns[sender];
     }
-
+    
     /// End the auction and send the highest bid
     /// to the beneficiary.
     function auctionEnd() public {
@@ -99,6 +101,7 @@ contract MartianAuction {
 
         // 1. Conditions
         require(!ended, "auctionEnd has already been called.");
+        require(msg.sender == deployer, "You are not the auction deployer!");
 
         // 2. Effects
         ended = true;
