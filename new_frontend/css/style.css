@@ -144,6 +144,25 @@ ol {
 	color: #fff;
 }
 
+.bid-btn {
+	position: relative;
+	display: inline-block;
+	padding: 15px 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 16px;
+	letter-spacing: 2px;
+	border-radius: 3px;
+	min-width: 500px;
+	align: center;
+	text-align: center;
+	background: #30caa0;
+	cursor: pointer;
+	border: none;
+	color: #fff;
+}
+
+
 /* Preloder */
 
 #preloder {
@@ -366,14 +385,14 @@ ol {
 	border-radius: 2px;
 }
 
-.propertie-item {
+.properties-item {
 	height: 270px;
 	position: relative;
 	margin-bottom: 30px;
 	position: relative;
 }
 
-.propertie-item:after {
+.properties-item:after {
 	position: absolute;
 	content: "";
 	width: 100%;
@@ -391,12 +410,12 @@ ol {
 	/* IE6-9 */
 }
 
-.propertie-item .sale-notic,
-.propertie-item .rent-notic {
+.properties-item .sale-notic,
+.properties-item .rent-notic {
 	margin: 30px;
 }
 
-.propertie-info {
+.properties-info {
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -406,25 +425,25 @@ ol {
 	z-index: 5;
 }
 
-.propertie-info h5 {
+.properties-info h5 {
 	margin-bottom: 8px;
 	font-weight: 400;
 }
 
-.propertie-info p {
+.properties-info p {
 	margin-bottom: 0;
 }
 
-.propertie-info p i {
+.properties-info p i {
 	color: #30caa0;
 	margin-right: 5px;
 }
 
-.propertie-info .info-warp {
+.properties-info .info-warp {
 	float: left;
 }
 
-.propertie-info .price {
+.properties-info .price {
 	float: right;
 	background: #30caa0;
 	padding: 12px;
@@ -1878,7 +1897,7 @@ ol {
 		min-width: auto;
 		width: 20%;
 	}
-	.propertie-info .price {
+	.properties-info .price {
 		float: left;
 		margin-top: 15px;
 	}
