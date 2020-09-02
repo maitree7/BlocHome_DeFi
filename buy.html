@@ -13,11 +13,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="./frontend/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="./frontend/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="./frontend/css/animate.css"/>
+	<link rel="stylesheet" href="./frontend/css/owl.carousel.css"/>
+	<link rel="stylesheet" href="./frontend/css/style.css"/>
 
 
 	<!--[if lt IE 9]>
@@ -63,7 +63,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="site-navbar">
-						<a href="#" class="site-logo"><img src="img/logo.png" alt=""></a>
+						<a href="#" class="site-logo"><img src="./frontend/img/logo.gif" alt=""></a>
 						<div class="nav-switch">
 							<i class="fa fa-bars"></i>
 						</div>
@@ -72,7 +72,7 @@
 							<li><a href="Buy.html">BUY</a></li>
 							<li><a href="Rent.html">RENT</a></li>
 							<li><a href="about.html">ABOUT US</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="./frontend/contact.html">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -81,86 +81,58 @@
 	</header>
 	<!-- Header section end -->
 
-
-	<!-- Hero section -->
-	<section class="hero-section set-bg" data-setbg="img/bg.jpg">
-		<div class="container hero-text text-white">
-			<h2>Smart REAL Estate Contracts with a PUSH BUTTON</h2>
-			<p>Search real estate property records, houses, condos, land and more on DealerLess Deals.<br>SMARTER, SECURE & FASTER</p>
-			<a href="buy.html" class="site-btn">VIEW DETAILS</a>
-		</div>
-	</section>
-	<!-- Hero section end -->
-
-
-	<!-- Properties section -->
-	<section class="properties-section spad">
+        <!-- Page -->
+    
+	<!-- page form section -->
+	<section class="feature-category-section spad set-bg" data-setbg="./frontend/img/service-bg.jpg"></section>
 		<div class="container">
 			<div class="section-title text-center">
-				<h3>RECENT PROPERTIES</h3>
-				<p>Discover how much the latest properties have been sold for</p>
+				<h3>PROPERTY</h3>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<div class="properties-item set-bg" data-setbg="img/properties/1.jpg">
-						<a href="buy.html" button class="sale-notic">FOR SALE</button></a>
-						<div class="properties-info text-white">
-							<div class="info-warp">
-								<h5>176 Kingsberry, Dr Anderson</h5>
-								<p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
-							</div>
-							<div class="price">$1,777,000</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="properties-item set-bg" data-setbg="img/properties/2.jpg">
-						<a href="rent.html" button class="rent-notic">FOR RENT</button></a>
-						<div class="properties-info text-white">
-							<div class="info-warp">
-								<h5>45 Lianne Dr, Greece Street</h5>
-								<p><i class="fa fa-map-marker"></i> Tasley, VA 23441</p>
-							</div>
-							<div class="price">$1255/month</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="properties-item set-bg" data-setbg="img/properties/3.jpg">
-						<a href="buy.html" button class="sale-notic">FOR SALE</button></a>
-						<div class="properties-info text-white">
-							<div class="info-warp">
-								<h5>6101 Aqua Ave Apt 603</h5>
-								<p><i class="fa fa-map-marker"></i> Miami Beach, FL 33141</p>
-							</div>
-							<div class="price">$150,000</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="properties-item set-bg" data-setbg="img/properties/4.jpg">
-						<a href="buy.html" button class="rent-notic">FOR RENT</button></a>
-						<div class="properties-info text-white">
-							<div class="info-warp">
-								<h5>339 N Oakhurst Dr Apt 303</h5>
-								<p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
-							</div>
-							<div class="price">$3000/month</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                <div class="col-md-4 mx-auto">
+                   <div class="myform form ">
+                      <form action="" method="post" name="login">
+                         <div class="form-group">
+                            <input type="text" name="image"  class="form-control my-input" id="image" placeholder="Image Url..">
+                         </div>
+                         <div class="form-group">
+                            <input type="text" name="address"  class="form-control my-input" id="address" placeholder="Street">
+                         </div>
+                         <div class="form-group">
+                            <input type="text" name="address"  class="form-control my-input" id="address" placeholder="Address">
+                         </div>
+                         <div class="form-group input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">ETH</span>
+                            </div>
+                            <input type="text" name="minBid" class="form-control my-input" aria-label="Amount (to the nearest ETH)" id="minBid" placeholder="Min Bid..">
+                            <div class="input-group-append">
+                              <span class="input-group-text">.00</span>
+                            </div>
+                          </div>
+                         <div class="form-group">
+                            <input type="hidden" name="state"  class="form-control my-input" id="state" value="buy">
+                         </div>
+                         <div class="text-center ">
+                            <button type="submit" class=" btn btn-block send-button tx-tfm">Upload</button>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
 		</div>
 	</section>
-	<!-- Properties section end -->
+    <!-- page form section end-->
+    
 
 
 	<!-- Services section -->
-	<section class="services-section spad set-bg" data-setbg="img/service-bg.jpg">
+	<section class="services-section spad set-bg" data-setbg="./frontend/img/service-bg.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<img src="img/service.jpg" alt="">
+					<img src="./frontend/img/service.jpg" alt="">
 				</div>
 				<div class="col-lg-5 offset-lg-1 pl-lg-0">
 					<div class="section-title text-white">
@@ -207,19 +179,19 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6 f-cata">
-					<img src="img/feature-cate/1.jpg" alt="">
+					<img src="./frontend/img/feature-cate/1.jpg" alt="">
 					<h5>Apartment for rent</h5>
 				</div>
 				<div class="col-lg-3 col-md-6 f-cata">
-					<img src="img/feature-cate/2.jpg" alt="">
+					<img src="./frontend/img/feature-cate/2.jpg" alt="">
 					<h5>Family Home</h5>
 				</div>
 				<div class="col-lg-3 col-md-6 f-cata">
-					<img src="img/feature-cate/3.jpg" alt="">
+					<img src="./frontend/img/feature-cate/3.jpg" alt="">
 					<h5>Resort Villas</h5>
 				</div>
 				<div class="col-lg-3 col-md-6 f-cata">
-					<img src="img/feature-cate/4.jpg" alt="">
+					<img src="./frontend/img/feature-cate/4.jpg" alt="">
 					<h5>Office Building</h5>
 				</div>
 			</div>
@@ -297,11 +269,11 @@
 	<!-- Footer section end -->
                                         
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/masonry.pkgd.min.js"></script>
-	<script src="js/magnific-popup.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="./frontend/js/jquery-3.2.1.min.js"></script>
+	<script src="./frontend/js/bootstrap.min.js"></script>
+	<script src="./frontend/js/owl.carousel.min.js"></script>
+	<script src="./frontend/js/masonry.pkgd.min.js"></script>
+	<script src="./frontend/js/magnific-popup.min.js"></script>
+	<script src="./frontend/js/main.js"></script>
 </body>
 </html>

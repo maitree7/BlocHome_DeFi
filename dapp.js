@@ -1,6 +1,6 @@
 // @TODO: Update this address to match your deployed DealerlessMarket contract!
-const marketContractAddress = "0x3954A6a3A63C06C32704e60527C76049BDdaf98E";
-const rentalContractAddress = "0x2a39877f0911F1e1AD3215D2cc90adb66A6a64Cc";
+const marketContractAddress = "0x6eCB11D6bAC9fe5b44C5CD8334e1D1E896e42113";
+const rentalContractAddress = "0xE3b6c5b85Fbe797756594552bd41e86DCc4d2ff5";
 
 const dApp = {
   ethEnabled: function() {
@@ -11,6 +11,20 @@ const dApp = {
       return true;
     }
     return false;
+  },
+  getHouse : function (houseData){
+      return `<div class="col-md-6">
+					<div class="properties-item set-bg" data-setbg="${houseData.image}">
+						<a href="./frontend/${houseData.state}.html" button class="sale-notic">FOR SALE</button></a>
+						<div class="properties-info text-white">
+							<div class="info-warp">
+								<h5>${houseData.address[0]}</h5>
+								<p><i class="fa fa-map-marker"></i> ${houseData.address[1]}</p>
+							</div>
+							<div class="price">${houseData.price}</div>
+						</div>
+					</div>
+				</div>`;
   },
   init: async function() {
     // Initialize web3
