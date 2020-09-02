@@ -23,6 +23,22 @@ $(window).on('load', function() {
 
 (function($) {
 
+
+
+		$("#content").load("buy.html");
+		$('.main-menu a').on('click', function(){
+			var page = $(this).attr('href');
+			$("#content").load(page.replace('#','')+'.html');
+			$([document.documentElement, document.body]).animate({
+				scrollTop: $('#content').offset().top
+			}, 750);
+			console.log('clicked')
+		});
+		
+		$('#add-property').on('click', function(){
+			dApp.registerLand();
+		});
+
 	/*------------------
 		Navigation
 	--------------------*/

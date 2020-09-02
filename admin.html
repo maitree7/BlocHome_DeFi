@@ -1,0 +1,43 @@
+<div id="admin">
+<!-- page form section -->
+<section class="feature-category-section spad set-bg" data-setbg="./frontend/img/service-bg.jpg">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3>PROPERTY</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+               <div class="myform form ">
+                  <form action="" method="post" name="login">
+                     <div class="form-group input-group-lg">
+                        <input type="text" name="image"  class="form-control my-input" id="image" placeholder="Image Url..">
+                     </div>
+                     <div class="form-group input-group-lg">
+                        <input type="text" name="address-1"  class="form-control my-input" id="address-1" placeholder="Street">
+                     </div>
+                     <div class="form-group input-group-lg">
+                        <input type="text" name="address-2"  class="form-control my-input" id="address-2" placeholder="Address">
+                     </div>
+                     <div class="form-group input-group input-group-lg mb-3">
+                        <input type="number" name="minBid" class="form-control my-input" aria-label="Amount (to the nearest ETH)" id="minBid" placeholder="Min Bid">
+                      </div>
+                      <div class="form-group input-group-lg">
+                        <input type="text" name="pinata-public-key"  class="form-control my-input" id="pinata-public-key" placeholder="Pinata Public Key">
+                     </div>
+                     <div class="form-group input-group-lg">
+                        <input type="password" name="pinata-private-key"  class="form-control my-input" id="pinata-private-key" placeholder="Pinata Private Key">
+                     </div>
+                     <div class="form-group ">
+                        <input type="hidden" name="state"  class="form-control my-input" id="state" value="buy">
+                     </div>
+                     <div class="text-center button-group-lg">
+                        <button type="button" id='add-property' onclick="dApp.registerLand()" class="btn btn-lg site-btn send-button">Upload</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+    </div>
+</section>
+<!-- page form section end-->
+</div>

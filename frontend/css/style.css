@@ -12,10 +12,20 @@
 html,
 body {
 	height: 100%;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'open_sansregular',sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
+
+button.send-button{
+	background: #30caa0;
+	width:100%;
+	height:46px;
+	font-weight: 600;
+	color:#fff;
+	padding: 20px 25px;
+	color:#FFFFFF;
+	}
 
 h1,
 h2,
@@ -242,7 +252,7 @@ ol {
 .header-top {
 	padding: 12px 0;
 	border-bottom: 1px solid #667792;
-	margin-bottom: 40px;
+	/*margin-bottom: 40px;*/
 }
 
 .top-info {
@@ -328,7 +338,7 @@ ol {
 }
 
 .hero-text {
-	padding-top: 340px;
+	padding-top: 600px;
 	text-align: center;
 }
 

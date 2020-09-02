@@ -1,6 +1,6 @@
 // @TODO: Update this address to match your deployed DealerlessMarket contract!
-const marketContractAddress = "0x6eCB11D6bAC9fe5b44C5CD8334e1D1E896e42113";
-const rentalContractAddress = "0xE3b6c5b85Fbe797756594552bd41e86DCc4d2ff5";
+const marketContractAddress = "0xd22c15A4eC20963ee61e741f96F3f65Ecf5DaAF0";
+const rentalContractAddress = "0x33E81cfF891EC074721e879753C0B752FaD81ee8";
 
 const dApp = {
   ethEnabled: function() {
@@ -11,20 +11,6 @@ const dApp = {
       return true;
     }
     return false;
-  },
-  getHouse : function (houseData){
-      return `<div class="col-md-6">
-					<div class="properties-item set-bg" data-setbg="${houseData.image}">
-						<a href="./frontend/${houseData.state}.html" button class="sale-notic">FOR SALE</button></a>
-						<div class="properties-info text-white">
-							<div class="info-warp">
-								<h5>${houseData.address[0]}</h5>
-								<p><i class="fa fa-map-marker"></i> ${houseData.address[1]}</p>
-							</div>
-							<div class="price">${houseData.price}</div>
-						</div>
-					</div>
-				</div>`;
   },
   init: async function() {
     // Initialize web3
@@ -62,7 +48,7 @@ const dApp = {
     this.totalNumberOfItems = await this.marsContract.methods.totalNumberOfItems().call();
 
     // fetch json metadata from IPFS (name, description, image, etc)
-    console.log();
+    
     const fetchMetadata = (reference_uri) => fetch(`https://gateway.pinata.cloud/ipfs/${reference_uri.replace("ipfs://", "")}`, { mode: "cors" }).then((resp) => resp.json());
 
     for (let i = 1; i <= this.totalNumberOfItems; i++) {
@@ -102,7 +88,8 @@ const dApp = {
     // refresh variables
     await this.collectVars();
     const contract_owner = this.accounts[0];
-    $("#dapp-tokens").html("");
+    
+    $("#property-section div.row").html(this.tokens.length==0?"<div class='col text-center'>No Property Available..</div>" : '');
     this.tokens.forEach((token) => {
       try {
         let endAuction = `<a token-id="${token.tokenId}" class="dapp-admin" style="display:none;" href="#" onclick="dApp.endAuction(event)">End Auction</a>`;
@@ -115,12 +102,13 @@ const dApp = {
         }
         let withdraw = `<a token-id="${token.tokenId}" href="#" onclick="dApp.withdraw(event)">Withdraw</a>`
         let pendingWithdraw = `Balance: ${token.pendingReturn} wei`;
-          $("#dapp-tokens").append(
-            `<div class="col m6">
-              <div class="card">
+          $("#property-section div.row").append(
+            `<div class="col-md-6">
+              <div class="properties-item card">
                 <div class="card-image">
-                  <img id="dapp-image" src="https://gateway.pinata.cloud/ipfs/${token.image.replace("ipfs://", "")}">
-                  <span id="dapp-name" class="card-title">${token.name}</span>
+                  <img id="dapp-image" src="${token.image}">
+                  <span id="dapp-name" class="card-title properties-info text-white">${token['address-1']}
+                  <p><i class="fa fa-map-marker"></i> ${token['address-2']}</p></span>
                 </div>
                 <div class="card-action">
                   <input type="number" min="${token.highestBid == 0? token.minBid : token.highestBid + 1}" name="dapp-wei" value="${token.highestBid == 0? token.minBid : token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
@@ -163,42 +151,27 @@ const dApp = {
     });
   },
   registerLand: async function() {
-    const name = $("#dapp-register-name").val();
-    const image = document.querySelector('input[type="file"]');
-    const minBid =  $("#dapp-register-minBid").val()
+    const form_data = $('#admin form').serializeArray()
+    const house_data = {};
+    form_data.forEach(function(data){
+      if (!data.value) {
+        M.toast({ html: "Please fill out then entire form!" });
+        return;
+      }
+      house_data[data.name] = data.value;
+    });
+    pinata_api_key = house_data['pinata-public-key'];
+    pinata_secret_api_key = house_data['pinata-private-key'];
 
-    const pinata_api_key = $("#dapp-pinata-api-key").val();
-    const pinata_secret_api_key = $("#dapp-pinata-secret-api-key").val();
+    delete house_data['pinata-public-key'];
+    delete house_data['pinata-private-key'];
 
-    if (!pinata_api_key || !pinata_secret_api_key || !name || !image) {
-      M.toast({ html: "Please fill out then entire form!" });
-      return;
-    }
-
-    const image_data = new FormData();
-    image_data.append("file", image.files[0]);
-    image_data.append("pinataOptions", JSON.stringify({cidVersion: 1}));
-
+    console.log(house_data);
     try {
-      M.toast({ html: "Uploading Image to IPFS via Pinata..." });
-      const image_upload_response = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          pinata_api_key,
-          pinata_secret_api_key
-        },
-        body: image_data,
-      });
-
-      const image_hash = await image_upload_response.json();
-      const image_uri = `ipfs://${image_hash.IpfsHash}`;
-
-      M.toast({ html: `Success. Image located at ${image_uri}.` });
       M.toast({ html: "Uploading JSON..." });
 
       const reference_json = JSON.stringify({
-        pinataContent: { name, image: image_uri, minBid},
+        pinataContent: house_data,
         pinataOptions: {cidVersion: 1}
       });
 
@@ -221,9 +194,7 @@ const dApp = {
 
       await this.marsContract.methods.registerLand(reference_uri).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
         M.toast({ html: "Transaction Mined! Refreshing UI..." });
-        $("#dapp-register-name").val("");
-        $("#dapp-register-minBid").val("");
-        $("#dapp-register-image").val("");
+        $('#admin form')[0].reset();
         await this.updateUI();
       });
 
@@ -232,7 +203,7 @@ const dApp = {
     }
   },
   readyToRent: async function(){
-    await this.marsContract.methods.readyToRent()
+    await this.marsContract.methods.readyToRent();
   },
   main: async function() {
     // Initialize web3
