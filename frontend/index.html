@@ -7,20 +7,18 @@
 	<meta name="keywords" content="DEALERLESS DEALS, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->   
-	<link href="./frontend/img/favicon.ico" rel="shortcut icon"/>
+	<link href="img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<!-- Compiled and minified Materialize CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=" crossorigin="anonymous" />
-	<link rel="stylesheet" href="./frontend/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="./frontend/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="./frontend/css/animate.css"/>
-	<link rel="stylesheet" href="./frontend/css/owl.carousel.css"/>
-	<link rel="stylesheet" href="./frontend/css/style.css"/>
-			
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/animate.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
 
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -65,17 +63,16 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="site-navbar">
-						<a href="#" class="site-logo"><img src="./frontend/img/bloc_spot.gif" alt="" height="200" width="200" align="center"></a>
+						<a href="#" class="site-logo"><img src="img/logo.png" alt=""></a>
 						<div class="nav-switch">
 							<i class="fa fa-bars"></i>
 						</div>
 						<ul class="main-menu">
-							<li><a href="#preloder">Home</a></li>
-							<li><a href="#buy">BUY</a></li>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="Buy.html">BUY</a></li>
 							<li><a href="Rent.html">RENT</a></li>
-							<li><a href="#admin" class='dapp-admin'>Admin</a></li>
 							<li><a href="about.html">ABOUT US</a></li>
-							<li><a href="./frontend/contact.html">Contact</a></li>
+							<li><a href="contact.html">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -84,57 +81,112 @@
 	</header>
 	<!-- Header section end -->
 
-	
+
 	<!-- Hero section -->
-	<section class="hero-section set-bg" data-setbg="./frontend/img/bg-1.jpg">
+	<section class="hero-section set-bg" data-setbg="img/bg.jpg">
 		<div class="container hero-text text-white">
 			<h2>Smart REAL Estate Contracts with a PUSH BUTTON</h2>
 			<p>Search real estate property records, houses, condos, land and more on DealerLess Deals.<br>SMARTER, SECURE & FASTER</p>
-			<a href="./frontend/buy.html" class="site-btn">VIEW DETAILS</a>
+			<a href="buy.html" class="site-btn">VIEW DETAILS</a>
 		</div>
 	</section>
 	<!-- Hero section end -->
 
+
+	<!-- Properties section -->
+	<section class="properties-section spad">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3>RECENT PROPERTIES</h3>
+				<p>Discover how much the latest properties have been sold for</p>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="properties-item set-bg" data-setbg="img/properties/1.jpg">
+						<a href="buy.html" button class="sale-notic">FOR SALE</button></a>
+						<div class="properties-info text-white">
+							<div class="info-warp">
+								<h5>176 Kingsberry, Dr Anderson</h5>
+								<p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
+							</div>
+							<div class="price">$1,777,000</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="properties-item set-bg" data-setbg="img/properties/2.jpg">
+						<a href="rent.html" button class="rent-notic">FOR RENT</button></a>
+						<div class="properties-info text-white">
+							<div class="info-warp">
+								<h5>45 Lianne Dr, Greece Street</h5>
+								<p><i class="fa fa-map-marker"></i> Tasley, VA 23441</p>
+							</div>
+							<div class="price">$1255/month</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="properties-item set-bg" data-setbg="img/properties/3.jpg">
+						<a href="buy.html" button class="sale-notic">FOR SALE</button></a>
+						<div class="properties-info text-white">
+							<div class="info-warp">
+								<h5>6101 Aqua Ave Apt 603</h5>
+								<p><i class="fa fa-map-marker"></i> Miami Beach, FL 33141</p>
+							</div>
+							<div class="price">$150,000</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="properties-item set-bg" data-setbg="img/properties/4.jpg">
+						<a href="buy.html" button class="rent-notic">FOR RENT</button></a>
+						<div class="properties-info text-white">
+							<div class="info-warp">
+								<h5>339 N Oakhurst Dr Apt 303</h5>
+								<p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
+							</div>
+							<div class="price">$3000/month</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Properties section end -->
+
+
 	<!-- Services section -->
-<!-- Services section -->
-	<section class="services-section spad set-bg" data-setbg="./frontend/img/3.jpg">
+	<section class="services-section spad set-bg" data-setbg="img/service-bg.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<img src="./frontend/img/service.jpg" alt="">
+					<img src="img/service.jpg" alt="">
 				</div>
 				<div class="col-lg-5 offset-lg-1 pl-lg-0">
-					<div class="section-title text-grey">
-						<h3>Services</h3>
+					<div class="section-title text-white">
+						<h3>Smart Real Estate Contracts with a Push Button</h3>
 						<p>SMARTER, SECURE & FASTER</p>
 					</div>
 					<div class="services">
 						<div class="service-item">
 							<i class="fa fa-home"></i>
 							<div class="service-text">
-								<div class="section-title text-black">
-								<p>Selling & Renting</p>
+								<h5>Selling & Renting</h5>
 								<p>Dealerless Deals is a platform that provides services for sell (through auction), rent and real estate launch in the property registry using smart contracts</p>
-								</div>
 							</div>
 						</div>
 						<div class="service-item">
 							<i class="fa fa-handshake-o"></i>
 							<div class="service-text">
-								<div class="section-title text-black">
-								<p>Smart Contracts</p>
+								<h5>Smart Contracts</h5>
 								<p>100% electronic and secure property sale where fraud and paper deeds are a thing of the past.<br/>Digital leases which automatically withdraw rent payments and service charges with a full audit trail and no human error.</p>
-								</div>
 							</div>
-							
 						</div>
 						<div class="service-item">
 							<i class="fa fa-google-wallet"></i>
 							<div class="service-text">
-							<div class="section-title text-black">
-								<p>Secure Transfer</p>
+								<h5>Secure Transfer</h5>
 								<p>An autonomous accounting system where every transaction is automatically recorded and balanced without fear of anyone manipulating the system. </br>A secure electronic record for each individual and corporate entity showing all their details among them their credit history.</p>
-							</div>
 							</div>
 						</div>
 					</div>
@@ -142,22 +194,54 @@
 			</div>
 		</div>
 	</section>
-	
 	<!-- Services section end -->
+
+
 	
+	<!-- feature category section -->
+	<section class="feature-category-section spad">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3>LOOKING PROPERTY</h3>
+				<p>What kind of property are you looking for? We will help you</p>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-6 f-cata">
+					<img src="img/feature-cate/1.jpg" alt="">
+					<h5>Apartment for rent</h5>
+				</div>
+				<div class="col-lg-3 col-md-6 f-cata">
+					<img src="img/feature-cate/2.jpg" alt="">
+					<h5>Family Home</h5>
+				</div>
+				<div class="col-lg-3 col-md-6 f-cata">
+					<img src="img/feature-cate/3.jpg" alt="">
+					<h5>Resort Villas</h5>
+				</div>
+				<div class="col-lg-3 col-md-6 f-cata">
+					<img src="img/feature-cate/4.jpg" alt="">
+					<h5>Office Building</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- feature category section end-->
+
+
 	<!-- Footer section -->
-	<footer class="footer-section set-bg" data-setbg="./frontend/img/footer-bg.jpg">
+	<footer class="footer-section set-bg" data-setbg="img/footer-bg.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6 footer-widget">
-					<img src="./frontend/img/bloc_spot.gif" alt="" height="100" width="100">
+					<img src="img/logo.png" alt="">
 					<p>Smarter, Safer & Faster</p>
 					<p>Smart Real Estate Contracts with a Button Click</p>
 					<div class="social">
-						<a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
-						<a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a>
-						<a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
-						<a href="https://www.linkedin.com"><i class="fa fa-linkedin"></i></a>
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+						<a href="#"><i class="fa fa-pinterest"></i></a>
+						<a href="#"><i class="fa fa-linkedin"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 footer-widget">
@@ -200,12 +284,11 @@
 			<div class="footer-bottom">
 				<div class="footer-nav">
 					<ul>
-						<li><a href="#preloder">Home</a></li>
-						<li><a href="#buy">BUY</a></li>
-						<li><a href="Rent.html">RENT</a></li>
-						<li><a href="#admin" class='dapp-admin'>Admin</a></li>
-						<li><a href="about.html">ABOUT US</a></li>
-						<li><a href="./frontend/contact.html">Contact</a></li>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="buy.html">Buy</a></li>
+						<li><a href="rent.html">Rent</a></li>
+						<li><a href="about">About Us</a></li>
+						<li><a href="contact">Contact</a></li>
 					</ul>
 				</div>
 			</div>
@@ -214,20 +297,11 @@
 	<!-- Footer section end -->
                                         
 	<!--====== Javascripts & Jquery ======-->
-	<!-- Compiled and minified JavaScript for Materialize CSS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=" crossorigin="anonymous"></script>
-	<!-- Web3.js -->
-	<script src="https://cdn.jsdelivr.net/npm/web3@1.2.5-rc.0/dist/web3.min.js" integrity="sha256-ZjUHyLZZWkQPbWfRjTSmGtfcTSOermVT6f/CvJW2RY4=" crossorigin="anonymous"></script>
-	<!-- dApp JavaScript -->
-	<script src="./frontend/js/jquery-3.2.1.min.js"></script>
-	<script src="./frontend/js/bootstrap.min.js"></script>
-	<script src="./frontend/js/owl.carousel.min.js"></script>
-	<script src="./frontend/js/masonry.pkgd.min.js"></script>
-	<script src="./frontend/js/magnific-popup.min.js"></script>
-	<script src="./dapp.js"></script>
-	<script src="./frontend/js/main.js"></script>
-	<script>
-		
-	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/masonry.pkgd.min.js"></script>
+	<script src="js/magnific-popup.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
