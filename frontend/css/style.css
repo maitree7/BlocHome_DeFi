@@ -26,7 +26,18 @@ button.send-button{
 	padding: 20px 25px;
 	color:#FFFFFF;
 	}
-
+	.file-field .btn{
+		line-height: 2;
+	}
+	.card-action>.input-group{
+		flex-wrap: nowrap;
+	}
+	.card-action>.input-group input.form-control, .left-pad{
+		margin-left: 10px;
+	}
+	#buy-section .row>.col-md-6{
+		padding-bottom: 250px;
+	}
 h1,
 h2,
 h3,
@@ -411,10 +422,11 @@ ol {
 	top: 0;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,303030+100&0+32,0.9+100 */
 	/* FF3.6-15 */
-	/* Chrome10-25,Safari5.1-6 */
+	/* Chrome10-25,Safari5.1-6 
 	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(32%, rgba(15, 15, 15, 0)), to(rgba(48, 48, 48, 0.9)));
 	background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0) 32%, rgba(48, 48, 48, 0.9) 100%);
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0) 32%, rgba(48, 48, 48, 0.9) 100%);
+	*/
 	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e6303030', GradientType=0);
 	/* IE6-9 */
@@ -423,6 +435,9 @@ ol {
 .properties-item .sale-notic,
 .properties-item .rent-notic {
 	margin: 30px;
+}
+.card-title{
+	margin-bottom:0;
 }
 
 .properties-info {
@@ -433,6 +448,10 @@ ol {
 	padding: 30px;
 	padding-bottom: 20px;
 	z-index: 5;
+	
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(32%, rgba(15, 15, 15, 0)), to(rgba(48, 48, 48, 0.9)));
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0) 32%, rgba(48, 48, 48, 0.9) 100%);
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0) 32%, rgba(48, 48, 48, 0.9) 100%);
 }
 
 .properties-info h5 {
@@ -1857,7 +1876,7 @@ ol {
 
 @media (min-width: 1200px) {
 	.container {
-		max-width: 1170px;
+		max-width: 1300px;
 	}
 }
 

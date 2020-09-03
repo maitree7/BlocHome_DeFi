@@ -83,35 +83,60 @@ const dApp = {
       $(".dapp-admin").hide();
     }
   },
+  getOwnerDiv : async function(token){
+   // if (token.owner == contract_owner){
+      
+        //return owner;
+  },
   updateUI: async function() {
     console.log("updating UI");
     // refresh variables
     await this.collectVars();
     const contract_owner = this.accounts[0];
     
-    $("#property-section div.row").html(this.tokens.length==0?"<div class='col text-center'>No Property Available..</div>" : '');
+    $("#content div.row").html(this.tokens.length==0?"<div class='col text-center'>No Property Available..</div>" : '');
     this.tokens.forEach((token) => {
       try {
         let endAuction = `<a token-id="${token.tokenId}" class="dapp-admin" style="display:none;" href="#" onclick="dApp.endAuction(event)">End Auction</a>`;
         let bid = `<a token-id="${token.tokenId}" href="#" onclick="dApp.bid(event);">Bid</a>`;
         let owner = `Owner: ${token.owner}`;
         console.log(contract_owner)
+        //owner = this.getOwnerDiv(token);
+        let optRent = '<div class="btn"><span>Owner</span></div>';
         if (token.owner == contract_owner){
-            owner += ` <br/><a class="waves-effect waves-light btn modal-trigger" id="rent-${token.tokenId}" href="#ready-to-rent-modal">Rent<i class="material-icons right">send</i></a>`;
-
+          optRent = `<div class="btn" style="background:#dc3545;">
+                    <span  id="rent-${token.tokenId}" type="button">Rent</span>
+                  </div>`
         }
+        owner = `
+            <div class="file-field input-field">
+                ${optRent}
+              <div class="file-path-wrapper left-pad">
+                <input class="validate" type="text" value="${token.owner}" disabled>
+              </div
+            </div>`;
+            //owner += ` <br/><a class="waves-effect waves-light btn modal-trigger" id="rent-${token.tokenId}" href="#ready-to-rent-modal">Rent<i class="material-icons right">send</i></a>`;
+
         let withdraw = `<a token-id="${token.tokenId}" href="#" onclick="dApp.withdraw(event)">Withdraw</a>`
         let pendingWithdraw = `Balance: ${token.pendingReturn} wei`;
-          $("#property-section div.row").append(
+          $("#content div.row").append(
             `<div class="col-md-6">
               <div class="properties-item card">
                 <div class="card-image">
                   <img id="dapp-image" src="${token.image}">
                   <span id="dapp-name" class="card-title properties-info text-white">${token['address-1']}
                   <p><i class="fa fa-map-marker"></i> ${token['address-2']}</p></span>
+                 
                 </div>
                 <div class="card-action">
-                  <input type="number" min="${token.highestBid == 0? token.minBid : token.highestBid + 1}" name="dapp-wei" value="${token.highestBid == 0? token.minBid : token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>WEI</span>
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class='form-control' type="number" min="${token.highestBid == 0? token.minBid : token.highestBid + 1}" name="dapp-wei" value="${token.highestBid == 0? token.minBid : token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
+                      </div>
+                  </div>
                   ${token.auctionEnded ? owner : bid}
                   ${token.pendingReturn > 0 ? withdraw : ''}
                   ${token.pendingReturn > 0 ? pendingWithdraw : ''}
@@ -194,8 +219,8 @@ const dApp = {
 
       await this.marsContract.methods.registerLand(reference_uri).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
         M.toast({ html: "Transaction Mined! Refreshing UI..." });
-        $('#admin form')[0].reset();
-        await this.updateUI();
+        $('.main-menu a[href="#buy"]').click();
+        //await this.updateUI();
       });
 
     } catch (e) {
