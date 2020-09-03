@@ -35,6 +35,14 @@ $(window).on('load', function() {
 			}, 750);
 			console.log('clicked');
 		});
+
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.modal');
+			var instances = M.Modal.init(elems, options);
+		  });
+
+		  $('.modal-trigger').on('click', function(){$('.modal').modal();});
+
 		
 		$('#add-property').on('click', function(){
 			dApp.registerLand();

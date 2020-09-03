@@ -105,7 +105,8 @@ const dApp = {
         let optRent = '<div class="btn"><span>Owner</span></div>';
         if (token.owner == contract_owner){
           optRent = `<div class="btn" style="background:#dc3545;">
-                    <span  id="rent-${token.tokenId}" type="button">Rent</span>
+                    <span class="waves-effect waves-light modal-trigger" href="#rent-modal"  data-target="rent-modal" id="rent-${token.tokenId}" >Rent</span>
+                    
                   </div>`
         }
         owner = `
@@ -134,7 +135,7 @@ const dApp = {
                         <span>WEI</span>
                       </div>
                       <div class="file-path-wrapper">
-                        <input class='form-control' type="number" min="${token.highestBid == 0? token.minBid : token.highestBid + 1}" name="dapp-wei" value="${token.highestBid == 0? token.minBid : token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
+                        <input id='wei-${token.tokenId}' class='form-control' type="number" min="${token.highestBid == 0? token.minBid : token.highestBid + 1}" name="dapp-wei" value="${token.highestBid == 0? token.minBid : token.highestBid + 1}" ${token.auctionEnded ? 'disabled' : ''}>
                       </div>
                   </div>
                   ${token.auctionEnded ? owner : bid}
@@ -155,7 +156,8 @@ const dApp = {
   },
   bid: async function(event) {
     const tokenId = $(event.target).attr("token-id");
-    const wei = Number($(event.target).prev().val());
+    const wei = Number($('#wei-'+tokenId).val());
+    console.log(wei);
     await this.marsContract.methods.bid(tokenId).send({from: this.accounts[0], value: wei}).on("receipt", async (receipt) => {
       M.toast({ html: "Transaction Mined! Refreshing UI..." });
       await this.updateUI();
@@ -176,7 +178,7 @@ const dApp = {
     });
   },
   registerLand: async function() {
-    const form_data = $('#admin form').serializeArray()
+    const form_data = $('#admin-section form').serializeArray()
     const house_data = {};
     form_data.forEach(function(data){
       if (!data.value) {
