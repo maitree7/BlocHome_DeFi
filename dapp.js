@@ -1,6 +1,6 @@
 // @TODO: Update this address to match your deployed DealerlessMarket contract!
-const marketContractAddress = "0x32813a28AF59d90381A6cFBF57A57B069E0690a3";
-const rentalContractAddress = "0xD7cE93961EB65dd39DcEf12FcF343889FbF77879";
+const marketContractAddress = "0xd22c15A4eC20963ee61e741f96F3f65Ecf5DaAF0";
+const rentalContractAddress = "0x33E81cfF891EC074721e879753C0B752FaD81ee8";
 
 const dApp = {
   ethEnabled: function() {
@@ -104,9 +104,8 @@ const dApp = {
         //owner = this.getOwnerDiv(token);
         let optRent = '<div class="btn"><span>Owner</span></div>';
         if (token.owner == contract_owner){
-          optRent = `<div class="btn" style="background:#dc3545;">
-                    <span class="waves-effect waves-light modal-trigger" href="#rent-modal"  data-target="rent-modal" id="rent-${token.tokenId}" >Rent</span>
-                    
+          optRent = `<div >
+                    <button id="rent-${token.tokenId}" type="button" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#rentalModal" data-tokenId='${token.tokenId}' data-whatever="@mdo">RENT</button>
                   </div>`
         }
         owner = `
@@ -119,7 +118,7 @@ const dApp = {
             //owner += ` <br/><a class="waves-effect waves-light btn modal-trigger" id="rent-${token.tokenId}" href="#ready-to-rent-modal">Rent<i class="material-icons right">send</i></a>`;
 
         let withdraw = `<a token-id="${token.tokenId}" href="#" onclick="dApp.withdraw(event)">Withdraw</a>`
-        let pendingWithdraw = `Balance: ${token.pendingReturn} wei`;
+        let pendingWithdraw = `<p>Balance: ${token.pendingReturn} wei</p>`;
           $("#content div.row").append(
             `<div class="col-md-6">
               <div class="properties-item card">
@@ -221,7 +220,7 @@ const dApp = {
 
       await this.marsContract.methods.registerLand(reference_uri).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
         M.toast({ html: "Transaction Mined! Refreshing UI..." });
-        $('.main-menu a[href="#buy"]').click();
+        window.location.reload()
         //await this.updateUI();
       });
 
@@ -229,8 +228,17 @@ const dApp = {
       alert("ERROR:", JSON.stringify(e));
     }
   },
-  readyToRent: async function(){
-    await this.marsContract.methods.readyToRent();
+  readyToRent: async function(event){
+    const tokenId = $('#rentalModal #tokenId').val();
+    const deposit = +$('#rentalModal #deposit').val();
+    const rent = +$('#rentalModal #rent').val();
+    await this.rentalContract.methods.readyToRent(tokenId, deposit, rent).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
+      M.toast({ html: "Updated Successfully..." });
+      await this.updateUI();
+    });
+  },
+  rentalStatus:async function(event){
+
   },
   main: async function() {
     // Initialize web3

@@ -16,7 +16,29 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
+.btn, .btn-large, .btn-small {
+    text-decoration: none;
+    color: #fff;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
 
+}
+.btn-danger{
+	background-color: #dc3545;
+}
+.modal{
+	background: rgba(0,0,0,0.1);
+	top:25%;
+}
+.modal .modal-footer .btn{
+	margin: 6px 6px;
+}
+#rentalModal .form-control{
+	width:70%;
+}
 button.send-button{
 	background: #30caa0;
 	width:100%;
