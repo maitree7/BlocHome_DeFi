@@ -1,6 +1,9 @@
 // @TODO: Update this address to match your deployed DealerlessMarket contract!
-const marketContractAddress = "0xd22c15A4eC20963ee61e741f96F3f65Ecf5DaAF0";
-const rentalContractAddress = "0x33E81cfF891EC074721e879753C0B752FaD81ee8";
+//const marketContractAddress = "0xd22c15A4eC20963ee61e741f96F3f65Ecf5DaAF0";
+//const rentalContractAddress = "0x33E81cfF891EC074721e879753C0B752FaD81ee8";
+
+const marketContractAddress = "0x8c890aF8BE8335174b32EBc671681fE4270004F0";
+const rentalContractAddress = "0xDE7A61c24B50e7dA6F9694a07FFD46323d0DBe45";
 
 const dApp = {
   ethEnabled: function() {
@@ -34,7 +37,9 @@ const dApp = {
       this.rentalsJson,
       this.rentalContractAddress,
       { defaultAccount: this.accounts[0] }
-    );
+    ).deploy({
+      arguments: [0x33E81cfF891EC074721e879753C0B752FaD81ee8],
+    });
 
     console.log("Contract object", this.marsContract);
     console.log("Contract Rental object", this.rentalContract);
@@ -237,7 +242,7 @@ const dApp = {
       await this.updateUI();
     });
   },
-  rentalStatus:async function(event){
+  isUnderRental : async function(tokenId){
 
   },
   main: async function() {

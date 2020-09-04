@@ -44,10 +44,7 @@ $(window).on('load', function() {
 			modal.find('.modal-body #itemId').val(tokenId)
 		  })
 
-		document.addEventListener('DOMContentLoaded', function() {
-			var elems = document.querySelectorAll('.modal');
-			var instances = M.Modal.init(elems, options);
-		  });
+
 
 		  $('.modal-trigger').on('click', function(){$('.modal').modal();});
 
