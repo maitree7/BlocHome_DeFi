@@ -1,6 +1,6 @@
 // @TODO: Update this address to match your deployed DealerlessMarket contract!
-const marketContractAddress = "0xd22c15A4eC20963ee61e741f96F3f65Ecf5DaAF0";
-const rentalContractAddress = "0x33E81cfF891EC074721e879753C0B752FaD81ee8";
+const marketContractAddress = "0x32813a28AF59d90381A6cFBF57A57B069E0690a3";
+const rentalContractAddress = "0xD7cE93961EB65dd39DcEf12FcF343889FbF77879";
 
 const dApp = {
   ethEnabled: function() {
