@@ -142,7 +142,7 @@ Trains Models to to identify, categorize and value Housing Sales Price per sqft 
 ### DEMO 
 ---
 
-[BLOC HOME WEBSITE](https://maitree7.github.io/DealerLessdeals_RealEstate/)
+[BLOC HOME WEBSITE](https://maitree7.github.io/BlocHome_DeFi/)
 
 With Admin Rights (Property Listing)
 
