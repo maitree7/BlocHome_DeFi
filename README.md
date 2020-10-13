@@ -80,7 +80,7 @@ Ethereum Real Estate Contracts are Flexible as contracts may be written so that 
     * Intellectual property rights
     * DAO membership tokens
     
-     NFT developers are also able to easily integrate ERC2615 since it is fully backwards-compatible with the ERC721 standard. \
+     NFT developers are also able to easily integrate ERC2615 since it is fully backwards-compatible with the ERC721 standard. 
      
      One notable point is that the person who has the right to use an application is not the owner but the user (i.e. tenant).
 
@@ -88,7 +88,7 @@ Ethereum Real Estate Contracts are Flexible as contracts may be written so that 
 
 ![dev_platforms](./frontend/img/dev_platforms.png)
 
-   The development platform- back-end interface includes: 
+   The development platform Back-end interface includes: 
 
 **[InterPlanetary File System (IPFS)](https://pinata.cloud/)** 
     is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting all computing devices.
