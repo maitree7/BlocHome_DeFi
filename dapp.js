@@ -161,6 +161,8 @@ const dApp = {
   },
   bid: async function(event) {
     const tokenId = $(event.target).attr("token-id");
+	//alert($(event.target));
+	alert($('#wei-'+tokenId).val());
     const wei = Number($('#wei-'+tokenId).val());
     console.log(wei);
     await this.marsContract.methods.bid(tokenId).send({from: this.accounts[0], value: wei}).on("receipt", async (receipt) => {
@@ -169,6 +171,8 @@ const dApp = {
     });
   },
   endAuction: async function(event) {
+	  	alert("endAuction async function This is to test Alert()");
+
     const tokenId = $(event.target).attr("token-id");
     await this.marsContract.methods.endAuction(tokenId).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
       M.toast({ html: "Transaction Mined! Refreshing UI..." });
@@ -176,6 +180,8 @@ const dApp = {
     });
   },
   withdraw: async function(event) {
+	  	alert("withdraw async function This is to test Alert()");
+
     const tokenId = $(event.target).attr("token-id") - 1;
     await this.tokens[tokenId].auction.methods.withdraw().send({from: this.accounts[0]}).on("receipt", async (receipt) => {
       M.toast({ html: "Transaction Mined! Refreshing UI..." });
@@ -238,6 +244,8 @@ const dApp = {
     const tokenId = $('#rentalModal #tokenId').val();
     const deposit = +$('#rentalModal #deposit').val();
     const rent = +$('#rentalModal #rent').val();
+	alert(deposit);
+	alert(rent);
     await this.rentalContract.methods.readyToRent(tokenId, deposit, rent).send({from: this.accounts[0]}).on("receipt", async (receipt) => {
       M.toast({ html: "Updated Successfully..." });
       await this.updateUI();
