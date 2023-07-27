@@ -4,9 +4,9 @@
 ### Smart Contract Real Estate Application - SMARTER, SECURE & FASTER
 ---
 BlocHome is a platform that provides services for sell (through auction), rent and real estate launch in the property registry using smart contracts
-  * Develop a digital real estate blockchain platform for the management of luxury home, apartments, investment property,  property rentals, and sales.
-  * Utilize Digital Token Technology to manage the distribution of real estate smart contacts.
-  * Utilize computer algorithms, blockchain, location data, predictive analytics and more to help investors locate and sell properties, find renters and maximize their real estate investments.
+  * Create a blockchain platform for managing luxury homes, apartments, investment properties, property rentals, and sales in the digital real estate industry.
+  * Use Digital Token Technology to handle the distribution of smart contracts for real estate.
+  * With the use of computer algorithms, blockchain technology, location data, and predictive analytics, our services assist investors in discovering and selling properties, finding renters, and optimizing their real estate investments.
 
 #### Property Management Process Details
 ---
